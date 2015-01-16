@@ -19,11 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * Time: 下午4:22
  * To change this template use File | Settings | File Templates.
  */
-/**
- *
- * @author zhengchubin
- *
- */
+
 @SuppressWarnings("serial")
 public class Upload extends HttpServlet {
     @SuppressWarnings("unchecked")
