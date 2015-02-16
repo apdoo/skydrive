@@ -25,8 +25,11 @@ public class Upload extends HttpServlet {
     @SuppressWarnings("unchecked")
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String savePath = this.getServletConfig().getServletContext()
-                .getRealPath("");
+        //获得项目根路径
+//        String savePath = this.getServletConfig().getServletContext()
+//                .getRealPath("");
+        //获得当前uid 作为保存的文件夹名
+        String savePath="E:/";
         savePath = savePath + "/uploads/";
         File f1 = new File(savePath);
         System.out.println(savePath);
@@ -58,18 +61,20 @@ public class Upload extends HttpServlet {
                 }
 
                 //扩展名格式：
-                if (name.lastIndexOf(".") >= 0) {
-                    extName = name.substring(name.lastIndexOf("."));
-                }
+//                if (name.lastIndexOf(".") >= 0) {
+//                    extName = name.substring(name.lastIndexOf("."));
+//                }
 
                 File file = null;
                 //用于判断生成的文件名是否已经存在
                 do {
                     //生成文件名：
-                    name = UUID.randomUUID().toString();
-                    file = new File(savePath + name + extName);
+//                    name = UUID.randomUUID().toString();
+//                    file = new File(savePath + name + extName);
+                    file = new File(savePath + name);
                 } while (file.exists());
-                File saveFile = new File(savePath + name + extName);
+//                File saveFile = new File(savePath + name + extName);
+                File saveFile = new File(savePath + name);
                 try {
                     item.write(saveFile);
                 } catch (Exception e) {
@@ -77,7 +82,8 @@ public class Upload extends HttpServlet {
                 }
             }
         }
-        response.getWriter().print(name + extName);
+//        response.getWriter().print(name + extName);
+        response.getWriter().print(name);
     }
 
 }

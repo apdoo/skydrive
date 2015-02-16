@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IDownloadLogsMapper">
+    <sql id="columnDownloadLogs">
+       userId,
+       fileId,
+       fileName,
+       ip,
+       downloadTime
+   </sql>
+
+    <resultMap type="com.hexor.repo.DownloadLogs" id="downloadLogsResultMap">
+        <id property="id" column="id"/>
+        <id property="userId" column="userId"/>
+        <id property="fileId" column="fileId"/>
+        <id property="fileName" column="fileName"/>
+        <id property="ip" column="ip"/>
+        <id property="downloadTime" column="downloadTime"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="downloadLogsResultMap">
+        select * from downloadlogs
+    </select>
+
+    <insert id="insertDownloadLogs" parameterType="com.hexor.repo.DownloadLogs">
+        insert into downloadlogs (<include refid="columnDownloadLogs" />) values(
+            #{userId},
+            #{fileId},
+            #{fileName},
+            #{ip},
+            #{downloadTime}
+        )
+    </insert>
+    <select id="getDownloadsByUserId" parameterType="String" resultType="int">
+         select count(*) from downloadlogs where userId=#{value}
+    </select>
+
+ </mapper>

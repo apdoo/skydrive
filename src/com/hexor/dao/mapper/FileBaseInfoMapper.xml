@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IFileBaseInfoMapper">
+   <sql id="columnFileBaseInfo">
+       userId,
+       userName,
+       uploadTime,
+       fileName,
+       fileSize,
+       fileType,
+       fileFlag,
+       downloads
+   </sql>
+ 
+    <resultMap type="com.hexor.repo.FileBaseInfo" id="fileBaseInfoResultMap">
+        <id property="id" column="id"/>  
+        <id property="userId" column="userId"/>
+        <id property="userName" column="userName"/>
+        <id property="uploadTime" column="uploadTime"/>
+        <id property="fileName" column="fileName"/>
+        <id property="fileSize" column="fileSize"/>
+        <id property="fileType" column="fileType"/>
+        <id property="fileFlag" column="fileFlag"/>
+        <id property="downloads" column="downloads"/>
+    </resultMap>
+
+    <insert id="insertFile"  parameterType="com.hexor.repo.FileBaseInfo" >
+        insert into filebaseinfo(<include refid="columnFileBaseInfo" />) values(
+        #{userId},
+        #{userName},
+        #{uploadTime},
+        #{fileName},
+        #{fileSize},
+        #{fileType},
+        #{fileFlag},
+        #{downloads}
+        )
+    </insert>
+
+    <select id="checkSameFile" parameterType="com.hexor.repo.FileBaseInfo" resultType="com.hexor.repo.FileBaseInfo">
+        select * from filebaseinfo  where   userId=#{userId} and fileName=#{fileName}   and fileFlag='0'
+    </select>
+
+    <select id="getCounts" parameterType="com.hexor.repo.Pager"  resultType="long">
+          select count(*) from filebaseinfo where userId=#{type}  and fileFlag=#{flag}
+    </select>
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="fileBaseInfoResultMap">
+			select * from filebaseinfo where userId=#{type} and fileFlag=#{flag} order by uploadTime desc limit #{index},#{data}
+    </select>
+
+    <select id="selectInIds" parameterType="List"  resultMap="fileBaseInfoResultMap">
+            select * from filebaseinfo where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <delete id="deleteInIds" parameterType="List" >
+        delete from   filebaseinfo  where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="recoverInIds" parameterType="List">
+        update   filebaseinfo set fileFlag='2' where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="reductionInIds" parameterType="List">
+        update   filebaseinfo set fileFlag='0' where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+  <!--这样写即可，mybatis会自动在字符串前后加上%来模糊查询-->
+    <select id="searchFileName" parameterType="String" resultMap="fileBaseInfoResultMap">
+        select * from  filebaseinfo where fileName like  "%"#{value}"%"  and fileFlag='0'
+    </select>
+     <!--根究用户id查询当前文件大小总和用量-->
+    <select id="getTotalUsed" parameterType="String" resultType="String">
+        select sum(filesize) from   filebaseinfo where userid=#{value}
+    </select>
+    <!--根据用户id查询当前上传文件被下载次数总和-->
+    <select id="getTotalDownloads" parameterType="String" resultType="String">
+        select sum(downloads) from filebaseinfo where userid=#{value}
+    </select>
+    <!--根据用户id查询当前上传文件总数-->
+    <select id="getTotalUploads" parameterType="String" resultType="long">
+        select count(*) from  filebaseinfo where  userid=#{value}
+    </select>
+     <!--下载文件次数+1-->
+    <update id="fileDownloadsAdd" parameterType="Map" >
+           update  filebaseinfo set downloads=downloads+1 where userId=#{userId} and fileName =#{fileName}
+    </update>
+    <!--查询当前热门文件 -->
+    <select id="getHotFiles" parameterType="String" resultMap="fileBaseInfoResultMap">
+          select * from  filebaseinfo  where userId=#{value} order by  downloads  desc limit 5
+    </select>
+    <!--查询最近上传文件记录-->
+    <select id="getRecentlyFiles" parameterType="String" resultMap="fileBaseInfoResultMap">
+          select * from  filebaseinfo  where userId=#{value} order by  uploadTime  desc limit 5
+    </select>
+    <!--91搜索查询网盘文件表中的所有文件-->
+
+ </mapper>
