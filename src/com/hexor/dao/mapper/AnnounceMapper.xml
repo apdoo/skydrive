@@ -42,4 +42,19 @@
     <select id="getAnnById" parameterType="String" resultType="com.hexor.repo.Announce">
          select * from announce where id=#{value}
     </select>
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="announceResultMap">
+			select * from announce order by id desc limit #{index},#{data}
+    </select>
+    <!--修改公告-->
+    <update id="updateAnnounce" parameterType="com.hexor.repo.Announce" >
+        update  announce set title=#{title},content=#{content},type=#{type} where id=#{id}
+    </update>
+    <!--删除公告-->
+    <delete id="deleteAnnounce" parameterType="List">
+        delete from   announce  where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
  </mapper>

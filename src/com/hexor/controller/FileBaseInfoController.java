@@ -113,7 +113,8 @@ public class FileBaseInfoController {
          List<Long> ll=buildList(ids);
         List<FileBaseInfo> list=fileBaseInfoService.selectInIds(ll);//获得查询到的文件信息结果
         for(FileBaseInfo bean:list){
-            jsonArray.add(rootUrl+"/file/download?userId="+bean.getUserId()+"&fileName="+bean.getFileName());
+//            jsonArray.add(rootUrl+"/file/download?userId="+bean.getUserId()+"&fileName="+bean.getFileName());
+            jsonArray.add(rootUrl+"/search/downloadPage?id="+bean.getId());
         }
         try {
             ResponseUtil.outWriteJson(response, jsonArray.toString());

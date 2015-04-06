@@ -109,6 +109,7 @@ public class UserController {
     }
     /**
      * 登录接口
+     * 一些同步在session里的信息 在登录和注册的时候放入即可。
      * @return
      */
     @RequestMapping(value="tologin")
@@ -143,6 +144,34 @@ public class UserController {
         //添加已经使用容量
 
         return modelAndView;
+    }
+
+    /**
+     * 分页查看用户
+     */
+    @RequestMapping(value="getUsers")
+    public void getUsers(@RequestParam(value = "page")String page,@RequestParam(value = "rows")String rows ,HttpServletResponse response,HttpServletRequest request){
+        //判断session中是否有该用户信息
+        User user=(User)request.getSession().getAttribute((String) Configurer.getContextProperty("session.userinfo"));//获得当前session中的用户
+        if(user==null||user.getType()!=1) return;//session不存在用户或者用户不为管理员的时候
+        Map map = new HashMap();
+        Pager pager=new Pager();
+        long count=userService.getUsersCount();//获得当前用户总数
+        pager.setData(Integer.parseInt(rows));
+        pager= PagerUtil.build(PagerUtil.SetPager(pager,count,Integer.parseInt(page)));
+        List<User> list =userService.limit(pager);
+        map.put("total",count/Long.parseLong(rows)+1);//jqGrid的total表示的是总数/查询的条数的=总页数
+        map.put("page",page);
+        map.put("records",count);
+        map.put("rows",list);
+        JSONObject json = new JSONObject();
+        json=JSONObject.fromObject(map); //将map对象转换成为json对象
+//        System.out.println("--------"+json.toString());
+        try {
+            ResponseUtil.outWriteJson(response,json.toString());
+        } catch (IOException e) {
+        }
+
     }
 
     /**
@@ -189,7 +218,6 @@ public class UserController {
         user.setOpassword(opassword);//设置二级密码
         userService.updateUser(user);
         ResponseUtil.outWriteJsonSuccess(response);
-
     }
 
     /**
@@ -234,6 +262,19 @@ public class UserController {
         //更新session
         User newuser=userService.getUserById(user.getId()+"");
         session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), newuser);
+    }
+    /**
+     * 修改用户的类型 0普通用户 1管理员用户
+     */
+    @RequestMapping(value="modifyType")
+    public void modifyType(@RequestParam(value = "type")String type,@RequestParam(value = "id")String id,HttpServletRequest request,HttpServletResponse response){
+        User user=(User)request.getSession().getAttribute((String) Configurer.getContextProperty("session.userinfo"));//获得当前session中的用户
+        if(user==null||user.getType()!=1) return;//session不存在用户或者用户不为管理员的时候
+        Map map=new HashMap();
+        map.put("type",type);
+        map.put("id",id);
+        userService.updateType(map);
+        ResponseUtil.outWriteJsonSuccess(response);
     }
 
     /**

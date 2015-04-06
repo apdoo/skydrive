@@ -4,7 +4,21 @@
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.0.3.min.js"></script>
 <script type="text/javascript">
     $(function(){
+        //左侧菜单选择样式
+        var name=window.location.pathname;
+        $("ul[class=submenu] a").each(function(){
+            $(this).parent().removeClass("active");
+            $(this).parent().parent().parent().removeClass("open");
+//            $(this).parent().parent().css("display","none");
+            if( $(this).attr("href")==name){
+//                console.info(  $(this).parent().parent().parent());
+                $(this).parent().addClass("active");
+                $(this).parent().parent().css("display","block");
+                $(this).parent().parent().parent().addClass("open");
+            }
+            //父菜单打开
 
+        });
 //        $('li').bind('click',function(){
 //            $("li").each(function (){
 //                $(this).removeClass("active");
@@ -44,16 +58,16 @@
     </div>
 </div><!-- #sidebar-shortcuts -->
 
-<ul id="left_menu_ul" class="nav nav-list">
-    <li >
+<ul id="left_menu_ul" class="nav-list">
+    <li  >
     <a href="#" class="dropdown-toggle">
         <i class="icon-dashboard"></i>
         <span class="menu-text"> 个人中心 </span>
         <b class="arrow icon-angle-down"></b>
     </a>
 
-    <ul class="submenu">
-        <li >
+    <ul class="submenu"  >
+        <li  >
             <a href="${pageContext.request.contextPath}/person/home" >
                 <i class="icon-double-angle-right"></i>
                 个人概况
@@ -65,15 +79,27 @@
                 安全中心
             </a>
         </li>
+        <li >
+            <a href="${pageContext.request.contextPath}/person/ticketPost" >
+                <i class="icon-double-angle-right"></i>
+                创建工单
+            </a>
+        </li>
+        <li >
+            <a href="${pageContext.request.contextPath}/person/myTickets" >
+                <i class="icon-double-angle-right"></i>
+                我的工单
+            </a>
+        </li>
     </ul>
 </li>
-<li>
+<li >
     <a href="#" class="dropdown-toggle">
         <i class="icon-text-width"></i>
         <span class="menu-text"> 分析系统 </span>
         <b class="arrow icon-angle-down"></b>
     </a>
-    <ul class="submenu">
+    <ul class="submenu" >
         <li >
             <a href="${pageContext.request.contextPath}/person/downloadsAnalysisPage" >
                 <i class="icon-double-angle-right"></i>
@@ -138,11 +164,32 @@
                         用户管理
                     </a>
                 </li>
+                <li >
+                    <a href="${pageContext.request.contextPath}/person/ticketManager" >
+                        <i class="icon-double-angle-right"></i>
+                        工单管理
+                    </a>
+                </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/person/announceManager">
+                    <a href="#" class="dropdown-toggle">
                         <i class="icon-double-angle-right"></i>
                         公告管理
+                        <b class="arrow icon-angle-down"></b>
                     </a>
+                    <ul class="submenu">
+                        <li>
+                            <a  href="${pageContext.request.contextPath}/person/announcePost">
+                                <i class="icon-leaf"></i>
+                                发布公告
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="${pageContext.request.contextPath}/person/announceManager">
+                                <i class="icon-eye-open"></i>
+                                公告管理
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                     <%--<li>--%>
                     <%--<a href="${pageContext.request.contextPath}/person/fileSearchPage">--%>
@@ -151,11 +198,28 @@
                     <%--</a>--%>
                     <%--</li>--%>
                 <li>
-                    <a href="${pageContext.request.contextPath}/person/messageManager">
-                        <i class="icon-double-angle-right"></i>
-                        消息管理
-                    </a>
-                </li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="icon-double-angle-right"></i>
+                            消息管理
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a  href="${pageContext.request.contextPath}/person/messageSend">
+                                    <i class="icon-leaf"></i>
+                                    发送消息
+                                </a>
+                            </li>
+                            <li>
+                                <a  href="${pageContext.request.contextPath}/person/messageManager">
+                                    <i class="icon-eye-open"></i>
+                                    消息查看
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             </ul>
         </li>
     </c:if>

@@ -8,10 +8,11 @@
 <html lang="en">
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘-个人中心</title>
+    <title>1024网盘-个人中心</title>
     <!-- basic styles -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
     <%--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />--%>
     <!--[if IE 7]>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome-ie7.min.css" />
@@ -84,7 +85,7 @@
                         <i class="icon-home home-icon"></i>
                         <a href="#">首页</a>
                     </li>
-                    <li class="active">公告管理</li>
+                    <li class="active">创建工单</li>
                 </ul><!-- .breadcrumb -->
 
             </div>
@@ -92,7 +93,7 @@
             <div class="page-content">
                 <div class="page-header">
                     <h1>
-                        公告管理
+                        创建工单
                         <small>
                             <i class="icon-double-angle-right"></i>
                             查看
@@ -110,48 +111,44 @@
                             <i class="icon-ok green"></i>
                             欢迎使用
                             <strong class="green">
-                                91网盘
+                                1024网盘
                                 <small>(v1.2)</small>
                             </strong>
                         </div>
-
-                   <form id="annForm" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="title"> 公告标题 </label>
-                            <div class="col-sm-9">
-                                <input type="text" id="title" placeholder="" class="col-xs-10 col-sm-5">
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="top_"> 是否置顶 </label>
-                            <div class="col-xs-3">
-                                <label>
-                                    <input id="top_" name="switch-field-1" class="ace ace-switch ace-switch-5" type="checkbox">
-                                    <span class="lbl"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="content_"> 内容 </label>
-                                <div class="col-sm-9">
-                                    <div class="wysiwyg-editor" style="width: 500px;" id="content_" contenteditable="true"></div>
+                        <form id="id-ticket-form" class="form-horizontal message-form  col-xs-12">
+                            <div class="">
+                                <div class="hr hr-18 dotted"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="title">工单标题:</label>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="input-icon block col-xs-12 no-padding">
+                                            <input maxlength="100" type="text" class="col-xs-12" name="messageTitle" id="title" placeholder="工单标题">
+                                            <i class="icon-comment-alt"></i>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="hr hr-18 dotted"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right">
+                                        <span class="inline space-24 hidden-480"></span>
+                                        工单内容:
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="wysiwyg-toolbar btn-toolbar center wysiwyg-style1"> <div class="btn-group">  <a class="btn btn-sm" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>  <a class="btn btn-sm" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>  <a class="btn btn-sm" data-edit="strikethrough" title="" data-original-title="Strikethrough"><i class="icon-strikethrough"></i></a>  <a class="btn btn-sm" data-edit="underline" title="" data-original-title="Underline"><i class="icon-underline"></i></a>  </div> <div class="btn-group">  <a class="btn btn-sm active" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>  <a class="btn btn-sm" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>  <a class="btn btn-sm" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>  </div> <div class="btn-group">  <div class="inline position-relative"> <a class="btn btn-sm  dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="icon-link"></i></a>  <div class="dropdown-menu dropdown-caret pull-right">							<div class="input-group">								<input class="form-control" placeholder="URL" type="text" data-edit="createLink">								<span class="input-group-btn">									<button class="btn btn-sm btn-primary" type="button">Add</button>								</span>							</div>						</div> </div> <a class="btn btn-sm" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="icon-unlink"></i></a>  </div> <div class="btn-group">  <a class="btn btn-sm" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>  <a class="btn btn-sm" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>  </div> </div> <div class="wysiwyg-editor" id="content" contenteditable="true"></div>
+                                    </div>
+                                </div>
+
+                                <div class="hr hr-18 dotted"></div>
+
+                                <div class="align-right">
+                                    <button onclick="submita()" type="button" class="btn btn-sm btn-primary no-border">
+                                        <span class="bigger-110">发送</span>
+                                        <i class="icon-arrow-right icon-on-right"></i>
+                                    </button>
+                                </div>
+
+                                <div class="space"></div>
                             </div>
-                        <div class="clearfix form-actions">
-                            <div class="col-md-offset-3 col-md-9">
-                                <button onclick="submita()" class="btn btn-info" type="button">
-                                    <i class="icon-ok bigger-110"></i>
-                                    提交
-                                </button>
-                                &nbsp; &nbsp; &nbsp;
-                                <button onclick="cancela()" class="btn" type="reset">
-                                    <i class="icon-undo bigger-110"></i>
-                                    重置
-                                </button>
-                            </div>
-                        </div>
                         </form>
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
@@ -220,42 +217,40 @@
 <script src="${pageContext.request.contextPath}/assets/js/bootbox.min.js"></script>
 <!-- inline scripts related to this page -->
   <script type="text/javascript">
-      //发布公告
+      //发布工单
       function submita(){
-          var bischecked=$('#top_').is(':checked');  //是否置顶按钮选中
           var title=$("#title").val();
-          var content=$("#content_").html();
+          var content=$("#content").html();
           if(title==""){
-              successTips("请输入标题");
+              successTips("请输入工单标题");
               return false;
-          }if(content==""){
-              successTips("请输入内容");
+          }   if(content==""){
+              successTips("请输入工单内容");
               return false;
           }
-
           $.ajax({
               type : "POST",
-              url : "${pageContext.request.contextPath}/announce/issueAnnounce",
+              url : "${pageContext.request.contextPath}/ticket/ticketCreate",
               dataType:"json",
               data :{
                   title:title,
-                  top:bischecked,//boolean型
                   content:content
               },
               success : function(data) {
                   if(data.success){
-                     $("#title").val("");
-                     $("#content_").text("");
+                      $("#title").val("");
+                      $("#content").text("");
                       successTips("发布成功!");
                   }
-              },
-              error:function(){
               }
+
           });
       }
+      /**
+      *取消
+       */
       function cancela(){
-          $("#title").val("");
-          $("#content_").text("");
+
       }
       //提示信息
       function successTips(tips){

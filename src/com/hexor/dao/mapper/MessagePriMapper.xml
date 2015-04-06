@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IMessagePriMapper">
+    <sql id="columnMessagePri">
+       userId,
+       userName,
+       fromId,
+       fromName,
+       messageTitle,
+       messageContent,
+       sendTime,
+       flag
+   </sql>
+    <resultMap type="com.hexor.repo.MessagePri" id="messagePriResultMap">
+        <id property="id" column="id"/>
+        <id property="userId" column="userId"/>
+        <id property="userName" column="userName"/>
+        <id property="fromId" column="fromId"/>
+        <id property="fromName" column="fromName"/>
+        <id property="messageTitle" column="messageTitle"/>
+        <id property="messageContent" column="messageContent"/>
+        <id property="sendTime" column="sendTime"/>
+        <id property="flag" column="flag"/>
+    </resultMap>
+    <!--查询看发送的总数-->
+    <select id="getCounts" resultType="int">
+        select count(*) from MessagePri
+    </select>
+    <!--当前用户查看自己未读的私信消息总数-->
+    <select id="getMyMessagesCounts" parameterType="String" resultType="int">
+         select count(*) from messagepri where  userId=#{value} and flag='0'
+    </select>
+
+    <!--当前用户查看自己未读消息的-->
+    <select id="getMyMessages" parameterType="String" resultMap="messagePriResultMap">
+           select * from   messagepri where  userId=#{value} and flag='0'   order by sendTime desc
+    </select>
+    <!--当前用户查看自己所有的消息列表-->
+    <select id="getAllMyMessages" parameterType="String" resultMap="messagePriResultMap">
+           select * from   messagepri where  userId=#{value}   order by sendTime desc
+    </select>
+    <!--插入消息记录-->
+    <insert id="insertMessage" parameterType="com.hexor.repo.MessagePri">
+        insert into messagepri(<include refid="columnMessagePri" />) value (
+            #{userId},
+            #{userName},
+            #{fromId},
+            #{fromName},
+            #{messageTitle},
+            #{messageContent},
+            #{sendTime},
+            #{flag}
+        )
+    </insert>
+    <!--修改消息标志 0未读 1已读 2删除 -->
+    <update id="updateRead" parameterType="String">
+        update messagepri set flag='1' where id=#{value}
+    </update>
+
+    <!-- 查找总条数 -->
+    <select id="getMessageCounts"    resultType="long">
+            select count(*) from messagepri
+    </select>
+
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="messagePriResultMap">
+			select * from messagepri order by id desc limit #{index},#{data}
+    </select>
+    <!--修改消息内容-->
+    <update id="updateMessage" parameterType="com.hexor.repo.MessagePri">
+          update  messagepri set messageTitle=#{messageTitle},messageContent=#{messageContent},flag=#{flag},userName=#{userName} where id=#{id}
+    </update>
+    <!--删除消息-->
+    <delete id="deleteMessage" parameterType="List">
+        delete from   messagepri  where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+ </mapper>

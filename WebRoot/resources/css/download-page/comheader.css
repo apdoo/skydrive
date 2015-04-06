@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background: #efeff1;
+	font-family: "Hiragino Sans GB W3", "Microsoft YaHei";
+	font-size: 16px;
+	color: #353941;
+}
+#header {
+	width: 100%;
+	height: 84px;
+	background: url(../images/header_bg.png);
+	position: relative;
+	z-index: 10;
+}
+.header, #main, .nfooter {
+	width: 1000px;
+	margin: 0 auto;
+}
+#logo {
+	display: block;
+	width: 220px;
+	height: 80px;
+	background: url(../images/logo.png) no-repeat;
+	text-align: -9999em;
+}
+.header h1 {
+	width:220px;
+	float: left;
+}
+.header h1 a {
+	text-indent: -900em;/*background:url(../img/logo.png) no-repeat;*/
+}
+#nav {
+	float: right;
+	position: relative;
+}
+#nav li {
+	float: left;
+	line-height: 76px;
+	margin-left: 30px;
+	display: block;
+}
+#nav li a {
+	display: block;
+}
+#nav li a:hover {
+	border-bottom: 6px solid #5fb972;
+}
+#nav .active a {
+	border-bottom: 6px solid #5fb972;
+}
+/*sticky footer*/
+html, body {
+	height: 100%;
+}
+#wrap {
+	min-height: 100%;
+}
+#container {/*overflow:auto;*/
+	padding-bottom: 84px;
+	min-height: 100%;
+}  /* must be same height as the footer */
+#nfooter {
+	position: relative;
+	margin-top: -84px; /* negative value of footer height */
+	height: 84px;
+	clear: both;
+}
+/*Opera Fix*/
+body:before {
+	content: "";
+	height: 100%;
+	float: left;
+	width: 0;
+	margin-top: -32767px;
+/
+}
+#footer{height:50px;width:100%;background-color:#444546;padding:24px 0 15px 0;}
+#footer p{text-align:center;margin-bottom:6px;color:#808181;}
+/*footer*/
+#nfooter {
+	width: 100%;
+	height: 84px;
+	background: url(../images/footer_bg.png);
+}
+#sitemap {
+	width: 344px;
+	height: 84px;
+	background: url(../images/sitemap_bg.png) no-repeat;
+	float: left;
+}
+#sitemap ul li{ float:left;}
+#sitemap ul li a {
+	float: left;
+	color: #d2d2d2;
+	font-size: 14px;
+	display: block;
+	margin-right: 30px;
+	line-height: 84px;
+	text-shadow: 0px 2px 2px #252b2f;
+}
+#sitemap ul li a:hover {
+	color: #efeff1;
+}
+#nfooter_logo {
+	width: 191px;
+	height: 31px;
+	margin-top:30px;
+	background: url(../images/logom.png) no-repeat;
+	float: right;
+}

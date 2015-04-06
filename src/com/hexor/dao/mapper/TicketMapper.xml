@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.ITicketMapper">
+    <sql id="columnTicketInfo">
+        userId,
+        userName,
+        title,
+        content,
+        status,
+        createTime
+    </sql>
+
+    <sql id="columnTicketReplay">
+        ticketId,
+        userId,
+        userName,
+        relayUserId,
+        replayUserName,
+        title,
+        content,
+        replayTime
+    </sql>
+
+    <resultMap type="com.hexor.repo.TicketInfo" id="ticketInfoResultMap">
+        <id property="id" column="id"/>
+        <id property="userId" column="userId"/>
+        <id property="userName" column="userName"/>
+        <id property="title" column="title"/>
+        <id property="content" column="content"/>
+        <id property="status" column="status"/>
+        <id property="createTime" column="createTime"/>
+    </resultMap>
+
+    <resultMap type="com.hexor.repo.TicketReplay" id="ticketReplayResultMap">
+        <id property="id" column="id"/>
+        <id property="ticketId" column="ticketId"/>
+        <id property="userId" column="userId"/>
+        <id property="userName" column="userName"/>
+        <id property="relayUserId" column="relayUserId"/>
+        <id property="replayUserName" column="replayUserName"/>
+        <id property="title" column="title"/>
+        <id property="content" column="content"/>
+        <id property="replayTime" column="replayTime"/>
+    </resultMap>
+
+    <!--插入一条新创建的工单信息-->
+    <insert id="insertTicketInfo" parameterType="com.hexor.repo.TicketInfo">
+        insert into ticketinfo (<include refid="columnTicketInfo" />) value (
+           #{userId},
+           #{userName},
+           #{title},
+           #{content},
+           #{status},
+           #{createTime}
+        )
+    </insert>
+    <!--查询当前用户自己的工单列表信息-->
+    <select id="getMyTickets" parameterType="String" resultMap="ticketInfoResultMap">
+        select * from  ticketinfo where userid=#{value}  order by  createTime desc
+    </select>
+    <!--查询所有工单-->
+    <select id="getAllTickets" resultMap="ticketInfoResultMap">
+        select * from  ticketinfo  order by  createTime desc
+    </select>
+    <!-- 查找总条数 -->
+    <select id="getTicketCounts"    resultType="long">
+            select count(*) from ticketinfo
+    </select>
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="ticketInfoResultMap">
+			select * from ticketinfo order by id desc limit #{index},#{data}
+    </select>
+    <!--修改该工单状态-->
+    <update id="updateStatus" parameterType="Map">
+        update    ticketinfo  set status=#{status} where id=#{id}
+    </update>
+    <!--查询未解决工单数-->
+    <select id="getUnTickets" resultType="int">
+        select count(*) from   ticketinfo where status='0'
+    </select>
+
+
+
+    <!--根据当前工单号查询工单回复表-->
+    <select id="getTicketReplays" parameterType="String" resultMap="ticketReplayResultMap">
+        select * from ticketreplay where ticketid=#{value}
+    </select>
+    <!--插入一条工单回复-->
+    <insert id="insertTicketReplay" parameterType="com.hexor.repo.TicketReplay" >
+        insert into ticketreplay (<include refid="columnTicketReplay" />) value (
+        #{ticketId},
+        #{userId},
+        #{userName},
+        #{relayUserId},
+        #{replayUserName},
+        #{title},
+        #{content},
+        #{replayTime}
+        )
+    </insert>
+ </mapper>

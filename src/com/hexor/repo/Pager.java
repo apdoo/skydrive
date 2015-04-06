@@ -6,6 +6,7 @@ package com.hexor.repo;
  * Date: 14-8-27
  * Time: 下午3:03
  * To change this template use File | Settings | File Templates.
+ * 分页类
  */
 public class Pager {
     private int count;//数据总数

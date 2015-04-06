@@ -31,4 +31,5 @@ public interface IFileBaseInfoMapper {
     public void fileDownloadsAdd(Map map);
     public List<FileBaseInfo> getHotFiles(String userId);
     public List<FileBaseInfo> getRecentlyFiles(String userId);
+    public FileBaseInfo selectById(String id);
 }

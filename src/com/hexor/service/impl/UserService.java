@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -81,5 +82,10 @@ public class UserService implements IUserService {
     @Override
     public void updateTemp(String id) {
         mapper.updateTemp(id);
+    }
+
+    @Override
+    public void updateType(Map map) {
+        mapper.updateType(map);
     }
 }

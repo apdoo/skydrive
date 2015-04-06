@@ -707,7 +707,7 @@
 
     欢迎使用
     <strong class="green">
-        91网盘
+        1024网盘
         <small>(v1.0)</small>
     </strong>
 </div>

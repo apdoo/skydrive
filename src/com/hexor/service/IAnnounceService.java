@@ -19,4 +19,7 @@ public interface IAnnounceService {
     public void insertAnn(Announce announce);
     public int getCounts();
     public Announce getAnnById(String id);
+    public List<Announce> limit(Pager pager);
+    public void updateAnnounce(Announce announce);
+    public void deleteAnnounce(List list);
 }

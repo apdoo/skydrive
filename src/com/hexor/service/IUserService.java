@@ -4,6 +4,7 @@ import com.hexor.repo.Pager;
 import com.hexor.repo.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,5 +28,5 @@ public interface IUserService {
     public void updateUser(User user);
     public User getUserById(String id);
     public void updateTemp(String id);
-
+    public void updateType(Map map);
 }

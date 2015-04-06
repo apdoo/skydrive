@@ -2,6 +2,7 @@ package com.hexor.service.impl;
 
 import com.hexor.dao.IAnnounceMapper;
 import com.hexor.repo.Announce;
+import com.hexor.repo.Pager;
 import com.hexor.service.IAnnounceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,5 +47,20 @@ public class AnnounceService implements IAnnounceService {
     @Override
     public Announce getAnnById(String id) {
         return mapper.getAnnById(id);
+    }
+
+    @Override
+    public List<Announce> limit(Pager pager) {
+        return mapper.limit(pager);
+    }
+
+    @Override
+    public void updateAnnounce(Announce announce) {
+        mapper.updateAnnounce(announce);
+    }
+
+    @Override
+    public void deleteAnnounce(List list) {
+        mapper.deleteAnnounce(list);
     }
 }

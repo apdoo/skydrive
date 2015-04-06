@@ -52,3 +52,42 @@ CREATE TABLE user(
   type varchar(20),
   updatetime varchar(30)
 )default charset=utf8;
+
+--工单记录 2015-03-18 create
+ create table TicketInfo(
+   id int NOT NULL AUTO_INCREMENT primary key,
+   ticketId int,
+   userId int,
+   userName varchar(20),
+   title varchar(100),
+   content  varchar(3000),
+   status varchar(2),
+   createTime  varchar(30)
+)default charset=utf8;
+--工单回复记录
+  create table TicketReplay(
+   id int NOT NULL AUTO_INCREMENT primary key,
+   ticketId int,
+   userId  int,
+   userName varchar(20),
+   relayUserId int,
+   replayUserName  varchar(20),
+   title varchar(100),
+   content  varchar(3000),
+   replayTime  varchar(30)
+)default charset=utf8;
+
+--消息记录表    2015-03-18 create
+create table messagepri(
+   id int NOT NULL AUTO_INCREMENT primary key,
+   userId int,
+   userName varchar(20),
+   fromId int,
+   fromName  varchar(20),
+   messageTitle varchar(100),
+   messageContent varchar(3000),
+   sendTime   varchar(30),
+   flag varchar(2)
+)default charset=utf8;
+
+

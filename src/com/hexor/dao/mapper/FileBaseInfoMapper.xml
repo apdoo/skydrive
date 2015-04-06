@@ -106,5 +106,7 @@
           select * from  filebaseinfo  where userId=#{value} order by  uploadTime  desc limit 5
     </select>
     <!--91搜索查询网盘文件表中的所有文件-->
-
+     <select id="selectById" parameterType="String" resultType="com.hexor.repo.FileBaseInfo">
+         select * from   filebaseinfo where id=#{value }
+     </select>
  </mapper>

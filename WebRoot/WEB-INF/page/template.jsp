@@ -7,7 +7,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘</title>
+    <title>1024网盘</title>
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/tree.js"></script>

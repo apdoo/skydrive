@@ -7,7 +7,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>91搜索</title>
+    <title>1024搜索</title>
     <link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
@@ -18,10 +18,10 @@
 
 <body style="margin:0; padding:0;">
 <div id="wp">
-    <div id="ua" ss_c="xin81"><a href="http://www.colafile.com/">91网盘</a></div>
+    <div id="ua" ss_c="xin81"><a href="http://www.colafile.com/">1024网盘</a></div>
     <h1>
-        91搜索
-        <%--<img src="${pageContext.request.contextPath}/resources/img/search_logo.png" width="280" height="49" alt="91网盘资源搜索" title="91网盘资源搜索">--%>
+        1024搜索
+        <%--<img src="${pageContext.request.contextPath}/resources/img/search_logo.png" width="280" height="49" alt="1024网盘资源搜索" title="1024网盘资源搜索">--%>
     </h1>
     <div id="sc">
         <div id="s">

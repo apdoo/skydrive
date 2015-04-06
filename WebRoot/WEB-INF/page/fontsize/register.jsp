@@ -7,7 +7,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘</title>
+    <title>1024网盘</title>
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/tree.js"></script>
@@ -21,7 +21,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/matrix-login.css">
     <link href="${pageContext.request.contextPath}/resources/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript">
+        $(function() {
+            //点击验证码换
+            $("#vimg").click(function() {
+                $("#vimg").attr("src","${pageContext.request.contextPath}/validation/one?random="+Math.random());
+            });
 
+        });
     </script>
 </head>
 
@@ -32,7 +38,7 @@
     <%@ include file="header.jsp" %>
     <div id="loginbox" style="margin-bottom: 125px;">
         <form name="user_form" action="${pageContext.request.contextPath}/user/signup" method="post" m="" id="loginform" class="form-vertical" onsubmit="return chkform(this);">
-            <div class="control-group normal_text"> <h3>注册91网盘帐号</h3></div>
+            <div class="control-group normal_text"> <h3>注册1024网盘帐号</h3></div>
             <div class="alert alert-error">
                 ${msg}
                 <%--<strong>错误</strong> 用户名已存在，请重新修改。--%>
@@ -80,7 +86,7 @@
                 </div>
             </div>
             <div class="form-actions">
-                <span class="pull-left"><a href="http://www.colafile.com/#" class="flip-link btn btn-info" id="to-recover">已有帐号?</a></span>
+                <span class="pull-left"><a href="${pageContext.request.contextPath}/user/login" class="flip-link btn btn-info" id="to-recover">已有帐号?</a></span>
                     <span class="pull-right">
 					<button type="submit" class="btn btn-success"> 注册</button></span>
             </div>
@@ -96,6 +102,8 @@
     </script>
 
     <script language="javascript">
+        $(function(){
+        });
         function chk_username(){
             var r_username = getId('r_username').value.strtrim();
             $('#e_username').removeClass();

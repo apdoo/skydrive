@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘-个人中心</title>
+    <title>1024网盘-个人中心</title>
     <!-- basic styles -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -116,7 +116,7 @@
                         <tbody>
                             <c:forEach items="${hotfiles}" var="p">
                                         <tr>
-                                            <td><a href="${pageContext.request.contextPath}/file/download?userId=${p.userId}&fileName=${p.fileName}" >${p.fileName}</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/search/downloadPage?id=${p.id}" >${p.fileName}</a></td>
                                             <td>
                                                 <b class="green">${p.fileSize} Mb</b>
                                             </td>

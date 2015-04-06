@@ -22,6 +22,13 @@ public class Announce {
     public Announce() {
     }
 
+    public Announce(int id, String title, String content, String type) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.type = type;
+    }
+
     public Announce(String content, String title,Boolean isTop,User user) {
         this.content = content;
         if(isTop){

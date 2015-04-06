@@ -64,4 +64,16 @@ public class FileSearchController {
         ModelAndView modelAndView=new ModelAndView("fontsize/searchResult", ModelMapUtil.getDownloadAnalysisMap(0, 0, 0, list));
         return modelAndView;
     }
+
+    /**
+     * 下载页面
+     * @return
+     */
+    @RequestMapping(value = "downloadPage")
+    public ModelAndView downloadPage(@RequestParam(value = "id")String id,HttpServletRequest request, HttpServletResponse response){
+        FileBaseInfo fileBaseInfo=fileBaseInfoService.selectById(id);
+        ModelAndView modelAndView=new ModelAndView("fontsize/downloadPage");
+        modelAndView.addObject("file",fileBaseInfo);
+        return modelAndView;
+    }
 }

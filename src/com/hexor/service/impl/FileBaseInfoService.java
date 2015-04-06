@@ -128,4 +128,9 @@ public class FileBaseInfoService implements IFileBaseInfoService {
     public List<FileBaseInfo> getRecentlyFiles(String userId) {
         return mapper.getRecentlyFiles(userId);
     }
+
+    @Override
+    public FileBaseInfo selectById(String id) {
+        return mapper.selectById(id);
+    }
 }

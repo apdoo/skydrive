@@ -3,7 +3,7 @@
 <div id="head">
     <%--<img width="157px" height="64px" src="${pageContext.request.contextPath}/resources/img/logo.png" id="logo">--%>
     <ul>
-        <li><a href="${pageContext.request.contextPath}" target="_blank" style="color:red">91网盘</a><img width="1px" height="13px" src="${pageContext.request.contextPath}/resources/img/nav_seperate_line.png"></li>
+        <li><a href="${pageContext.request.contextPath}" target="_blank" style="color:red">1024网盘</a><img width="1px" height="13px" src="${pageContext.request.contextPath}/resources/img/nav_seperate_line.png"></li>
         <li><a target="_blank" href="${pageContext.request.contextPath}/search/home">资源搜索</a><img width="1px" height="13px" src="${pageContext.request.contextPath}/resources/img/nav_seperate_line.png"></li>
         <%--<li><a href="http://www.colafile.com/vip">高级会员</a><img width="1px" height="13px" src="${pageContext.request.contextPath}/resources/img/nav_seperate_line.png"></li>--%>
         <span id="logininfo"><li>

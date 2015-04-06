@@ -8,15 +8,15 @@
 <html lang="en">
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘-个人中心</title>
+    <title>1024网盘-个人中心</title>
     <!-- basic styles -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jquery-ui-1.10.3.custom.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jquery.gritter.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/select2.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap-editable.css" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
     <%--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />--%>
     <!--[if IE 7]>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome-ie7.min.css" />
@@ -42,11 +42,8 @@
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-
     <script src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
     <!--[if lt IE 9]>
     <script src="${pageContext.request.contextPath}/assets/js/html5shiv.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/respond.min.js"></script>

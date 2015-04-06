@@ -7,8 +7,8 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘</title>
-    <script src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+    <title>1024网盘</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/tree.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.mybox.js"></script>
@@ -21,6 +21,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/matrix-login.css">
     <link href="${pageContext.request.contextPath}/resources/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript">
+        $(function() {
+            //点击验证码换
+            $("#vimg").click(function() {
+                $("#vimg").attr("src","${pageContext.request.contextPath}/validation/one?random="+Math.random());
+            });
+
+        });
     </script>
 </head>
 
@@ -32,7 +39,7 @@
     <div id="loginbox" style="margin-bottom: 185px;margin-top: 175px;">
 
         <form name="user_form" action="${pageContext.request.contextPath}/user/tologin" method="post" m="" id="loginform" class="form-vertical" onsubmit="return chkform(this);">
-            <div class="control-group normal_text"> <h3>登录91网盘</h3></div>
+            <div class="control-group normal_text"> <h3>登录1024网盘</h3></div>
             <div class="alert alert-info">
                 <%--<strong>提醒</strong> 测试提醒--%>
                 ${msg}
@@ -59,15 +66,15 @@
                     </div>
                 </div>
             </div>
-            <div class="control-group">
+            <div id="vimg_div" class="control-group">
                 <div class="controls">
-                    <div id="vimg_div" class="main_input_box">
+                    <div  class="main_input_box">
                         <img id="vimg"  src="${pageContext.request.contextPath}/validation/one" />
                     </div>
                 </div>
             </div>
             <div class="form-actions">
-                <span class="pull-left"><a href="account.php?action=forget_pwd" class="flip-link btn btn-info" id="to-recover">忘记密码?</a></span>
+                <%--<span class="pull-left"><a href="account.php?action=forget_pwd" class="flip-link btn btn-info" id="to-recover">忘记密码?</a></span>--%>
                     <span class="pull-right">
 					<button type="submit" class="btn btn-success"> 登录</button></span>
             </div>

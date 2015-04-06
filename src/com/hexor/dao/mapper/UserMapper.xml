@@ -66,8 +66,8 @@
     </insert>
     
     <!-- 查找总条数 -->
-     <select id="getUsersCount"  parameterType="String" resultType="long">
-            select count(*) from user where id=#{value}
+     <select id="getUsersCount"    resultType="long">
+            select count(*) from user
     </select>
     
     <!-- 针对mysql的分页 limit函数 -->
@@ -106,6 +106,9 @@
     <update id="updateTemp" parameterType="String">
         update user set temp='1' where id=#{value}
     </update>
-
+    <!--修改用户type-->
+    <update id="updateType" parameterType="Map">
+        update  user set type=#{type} where id=#{id}
+    </update>
 
  </mapper>

@@ -5,6 +5,7 @@ import com.hexor.repo.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,5 +27,6 @@ public interface IUserMapper {
     public User getUserById(String id);
     public void updateUser(User user);
     public void updateTemp(String id);
+    public void updateType(Map map);
 
 }

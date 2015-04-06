@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <base href="<%=basePath%>">
-    <title>91网盘-个人中心</title>
+    <title>1024网盘-个人中心</title>
     <!-- basic styles -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
@@ -113,7 +113,7 @@
 
                             欢迎使用
                             <strong class="green">
-                                91网盘
+                                1024网盘
                                 <small>(v1.2)</small>
                             </strong>
                         </div>
