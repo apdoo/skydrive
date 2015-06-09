@@ -206,6 +206,15 @@ public class PageController {
         return "person/admin/ticketManager";
     }
 
+    /**
+     * [管理员功能]-[种子发布管理]
+     */
+    @RequestMapping(value="uploadPostManager")
+    public String uploadPostManager(HttpServletRequest request){
+        return "person/admin/uploadPostManager";
+    }
+
+
 
     /**
      * [消息]-[我的消息]

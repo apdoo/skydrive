@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.ICollectLogsMapper">
+   <sql id="columnCollectLogs">
+		  resourceSite,
+		  type,
+		  name,
+		  content,
+		  resourceUrl,
+		  origDownloadUrl,
+		  downloadUrl,
+		  imgUrls,
+		  updatetime,
+		  type,
+		  section
+	 </sql>
+ 
+    <resultMap type="com.hexor.repo.CollectLogs" id="collectLogsResultMap">
+        <id property="id" column="id"/>  
+        <result property="resourceSite" column="resourceSite"/>
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="content" column="content"/>
+        <result property="resourceUrl" column="resourceUrl"/>
+        <result property="origDownloadUrl" column="origDownloadUrl"/>
+        <result property="downloadUrl" column="downloadUrl"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="section" column="section"/>
+    </resultMap>
+    
+     <select id="getAllCollectLogs"   resultMap="collectLogsResultMap">
+            select * from collectlogs
+    </select>
+
+    <!-- 查找总条数 -->
+     <select id="getCollectLogsCount"    resultType="long">
+            select count(*) from collectlogs
+    </select>
+    
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="collectLogsResultMap">
+			select * from collectlogs order by updatetime desc limit #{index},#{data}
+    </select>
+
+    <select id="showCollectLogsByParam" parameterType="Map" resultMap="collectLogsResultMap">
+          select * from collectlogs where section =#{section} and updatetime like  "%"#{updatetime}"%"
+    </select>
+
+
+
+
+ </mapper>
