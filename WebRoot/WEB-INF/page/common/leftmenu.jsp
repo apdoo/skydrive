@@ -159,6 +159,12 @@
             </a>
             <ul class="submenu">
                 <li >
+                    <a href="${pageContext.request.contextPath}/person/uploadPostManager" >
+                        <i class="icon-double-angle-right"></i>
+                        发帖管理
+                    </a>
+                </li>
+                <li >
                     <a href="${pageContext.request.contextPath}/person/userManager" >
                         <i class="icon-double-angle-right"></i>
                         用户管理
