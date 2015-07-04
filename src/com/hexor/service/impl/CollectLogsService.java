@@ -45,4 +45,9 @@ public class CollectLogsService implements ICollectLogsService{
     public List<CollectLogs> showCollectLogsByParam(Map map) {
         return mapper.showCollectLogsByParam(map);
     }
+
+    @Override
+    public List<CollectLogs> selectInIds(List list) {
+        return mapper.selectInIds(list);
+    }
 }

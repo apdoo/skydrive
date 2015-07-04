@@ -47,7 +47,12 @@
           select * from collectlogs where section =#{section} and updatetime like  "%"#{updatetime}"%"
     </select>
 
-
+    <select id="selectInIds" parameterType="List"  resultMap="collectLogsResultMap">
+        select * from collectlogs where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 
 
  </mapper>

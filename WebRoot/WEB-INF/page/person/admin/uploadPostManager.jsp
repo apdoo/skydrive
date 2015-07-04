@@ -174,6 +174,14 @@
                                         </div>
                                         <hr>
                                         <div>
+                                            <label class="col-sm-3 control-label no-padding-right" for="withfile"> 是否上传附件 </label>
+                                                <label>
+                                                    <input id="withfile" name="switch-field-1" checked="checked" class="ace ace-switch ace-switch-5" type="checkbox">
+                                                    <span class="lbl"></span>
+                                                </label>
+                                        </div>
+                                        <hr>
+                                        <div>
                                            <span class="input-group-btn">
                                                     <button id="start_search" onclick="start_search()" type="button" class="btn btn-purple btn-sm">
                                                         查看
@@ -323,6 +331,32 @@
     function start_post(){
         var webSite=$("#webSite").val(); //发布站点
         var section=$("#section").val(); //发布版块
+        var bischecked=$('#withfile').is(':checked');  //是否上传附件
+        var ids="";
+        $("input[checked=checked]").each(function(i,val){//遍历勾选的checkbox 获得采集的种子的id
+            if($(val).is(':checked')) {//只有选中的才进行发布
+//                console.info($(val).val());
+                ids=ids+$(val).val()+",";
+            }
+        });
+        //调用发布程序
+        $.ajax({
+            type:'post',
+            dataType:'json',
+            url:'${pageContext.request.contextPath}/website/startPost',
+            data:{
+                ids:ids,
+                webSite:webSite,
+                bischecked:bischecked,
+                section:section[0]//此处section在var的时候认为是数组
+            },
+         success:function(data){
+                alert(data.data);
+         },
+         error:function(){
+
+         }
+        });
 
     }
 

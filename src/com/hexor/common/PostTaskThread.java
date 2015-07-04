@@ -9,6 +9,7 @@ package com.hexor.common;
  * mm的地址是 21mybbs.me
  * 御花王朝  184.164.72.160
  * 新巴黎    http://107.150.17.66
+ *
  */
 public class PostTaskThread extends Thread {
     //编码方式

@@ -18,4 +18,5 @@ public interface ICollectLogsService {
     public List<CollectLogs>  getAllCollectLogs();
     public long getCollectLogsCount();
     public List<CollectLogs> showCollectLogsByParam(Map map);
+    public List<CollectLogs> selectInIds(List list);
 }
