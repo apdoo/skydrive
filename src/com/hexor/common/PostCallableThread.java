@@ -51,8 +51,8 @@ public class PostCallableThread implements Callable<String> {
     private static String GBK="GBK";
     private static String UTF8="UTF-8";
     //服务器上种子的路径前缀
-    private static  String path="/home/1/";
-//    private static  String path="E:\\uploads\\1\\";
+//    private static  String path="/home/1/";
+    private static  String path="E:\\uploads\\1\\";
     //使用的用户名与密码
     private String username="";
     private String password="";
