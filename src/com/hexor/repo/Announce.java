@@ -16,7 +16,7 @@ public class Announce {
     private String userName="";//发布公告的作者用户名
     private String title="";//公告标题
     private String content="";//公告内容
-    private String type="common";//公告类型 置顶 紧急 等..
+    private String type="common";//公告类型  common 普通 top置顶
     private String updateTime;//公告发布时间
 
     public Announce() {
